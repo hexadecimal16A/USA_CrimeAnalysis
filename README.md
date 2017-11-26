@@ -1,4 +1,4 @@
-# UsCrimeAnalysis
+# USACrimeAnalysis
 <h3>THIS PROJECT IS RUNNING LIVE ON <a href="https://usacrimeanalysis.herokuapp.com">https://usacrimeanalysis.herokuapp.com</a></h3>
 <h3>Install nodejs in your PC before running project</h3>
 <ol>
