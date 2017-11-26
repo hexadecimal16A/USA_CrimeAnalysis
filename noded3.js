@@ -2,6 +2,7 @@ var express = require('express');
 var d3=require('d3');
 var fs=require('fs');
 var app=express();
+const PORT = process.env.PORT || 5000
 app.use(express.static(__dirname + ''));
 var data;
 fs.readFile("finalClean.csv", "utf8", function(error, csv) {
@@ -132,7 +133,7 @@ app.get('/getWeaponAttr',function(req,res){
 	res.end(JSON.stringify(solved));
 });
 
-app.listen(8000,function(){
+app.listen(PORT,function(){
 	console.log('listening');
 
 });
