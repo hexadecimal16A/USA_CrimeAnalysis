@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>W3.CSS</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Audiowide|Source+Sans+Pro|Special+Elite" rel="stylesheet">
+	<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-flat.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+	
+	<style>
+		.fontAudiowide{
+			font-family: 'Audiowide', cursive;
+		}
+		.fontSpecialElite{
+			font-family: 'Special Elite', cursive;
+		}
+		.fontSourceSansPro{
+			font-family: 'Source Sans Pro', sans-serif;
+			color:grey;
+		}
+	</style>
+</head>
+<body>
+	<div class="w3-center" style="margin:0 auto;">
+		<header class="w3-container w3-flat-belize-hole">
+			 <h2 class="fontSourceSansPro w3-text-white">Weapon vs Sex
+			 	<span class="w3-right">
+			 		<h5 style="display:inline;">
+				 		<select class="fontSourceSansPro" style="background-color: #2980BB;color:white;border:0px" name="type" id="graphTypeWeaponVsSex" onchange="weaponvssex();">
+					    	<option value="bar">Bar</option>
+					    	<option value="line">Line</option>
+					    	<option value="radar">Radar</option>
+					  	</select>
+				  	</h5>
+				  	<h5 style="display:inline;">
+				  		<input class="w3-check" type="checkbox" id="graphFillWeaponVsSex" onchange="weaponvssex();">
+						<label>Fill</label>
+				  	</h5>
+			 	</span>
+			 </h2>
+		</header>
+	</div>
+	
+	<div class="w3-container">
+		<canvas id="weaponVsSexChart" class="w3-margin w3-center" height=120></canvas>
+	</div>
+	
+
+<!-- ///////////////////////// Year Vs Cases ////////////////////////////// -->
+
+	<div class="w3-center" style="margin:20px auto;">
+		<header class="w3-container w3-flat-belize-hole">
+			 <h2 class="fontSourceSansPro w3-text-white">Year vs Cases</h2>
+			 <div class="w3-row">
+			 	<div class="w3-col m2 s2 w3-mobile">
+			 		
+				 		<select class="fontSourceSansPro w3-select w3-center" style="background-color: #2980BB;color:white;width:50%;border:0px;" name="type" id="graphTypeYearVsCasesSolved" >
+					    	<option value="bar">Bar</option>
+					    	<option value="line">Line</option>
+					    	<option value="radar">Radar</option>
+					  	</select>
+				  	
+				</div>
+			  	<div class="w3-col m1 s1 w3-mobile">
+				  		<input class="w3-check" type="checkbox" id="graphFillYearVsCasesSolved">
+						<label>Fill</label>
+			  	</div>
+			  	<div class="w3-col m3 s3 w3-mobile">
+				  		<p style="display:inline;">
+						  <input class="w3-radio" type="radio" name="yearVsCasesSolvedPercent"  value="C" checked>
+						  <label>Count</label></p>
+						  <p style="display:inline;">
+						  <input class="w3-radio" type="radio" name="yearVsCasesSolvedPercent"  value="P">
+						  <label>Percentage</label></p>
+			  	</div>
+			  	<div class="w3-col m3 s3 w3-mobile">
+			  		<div class="w3-col m5 s5">
+					  	<input class="w3-input" id="yearVsCasesSolvedStart" type="number" min="1976" max="2016" value="1976">
+					</div>
+					<div class="w3-col m1 s1">
+						<label>-</label>
+					</div>
+					<div class="w3-col m5 s5">
+				  		<input class="w3-input" id="yearVsCasesSolvedEnd" type="number" min="1976" max="2016" value="2016">
+				  	</div>
+			  	</div>
+			  	<div class="w3-rest w3-mobile">
+					<button class="w3-button w3-flat-belize-hole w3-border w3-border-white w3-hover-blue" style="display:inline;" onclick="yearVsCasesSolved();">Go</button>
+				</div>
+			</div>
+			 
+		</header>
+	</div>
+	<div class="w3-container">
+		<canvas id="yearVsCasesSolvedChart" class="w3-margin w3-center" height=120></canvas>
+	</div>
+
+	<!-- ///////////////////////// Crime Vs Month ////////////////////////////// -->
+
+	<div class="w3-center" style="margin:20px auto;">
+		<header class="w3-container w3-flat-belize-hole">
+			 <h2 class="fontSourceSansPro w3-text-white">Month Vs Cases</h2>
+			 <div class="w3-row">
+			 	<div class="w3-col m2 s2 w3-mobile">
+			 		
+				 		<select class="fontSourceSansPro w3-select w3-center" style="background-color: #2980BB;color:white;width:50%;border:0px" name="type" id="graphTypeMonthVsCases" >
+					    	<option value="bar">Bar</option>
+					    	<option value="line">Line</option>
+					    	<option value="radar">Radar</option>
+					  	</select>
+				  	
+				</div>
+			  	<div class="w3-col m1 s1 w3-mobile">
+				  		<input class="w3-check" type="checkbox" id="graphFillMonthVsCases">
+						<label>Fill</label>
+			  	</div>
+			  	<div class="w3-col m3 s3 w3-mobile">
+				  		<p style="display:inline;">
+						  <input class="w3-radio" type="radio" name="monthVsCasesPercent"  value="C" checked>
+						  <label>Count</label></p>
+						  <p style="display:inline;">
+						  <input class="w3-radio" type="radio" name="monthVsCasesPercent"  value="P">
+						  <label>Percentage</label></p>
+			  	</div>
+			  	<div class="w3-col m3 s3 w3-mobile">
+			  		<div class="w3-col m5 s5">
+					  	<input class="w3-input" id="monthVsCasesStart" type="number" min="1976" max="2016" value="1976">
+					</div>
+					<div class="w3-col m1 s1">
+						<label>-</label>
+					</div>
+					<div class="w3-col m5 s5">
+				  		<input class="w3-input" id="monthVsCasesEnd" type="number" min="1976" max="2016" value="2016">
+				  	</div>
+			  	</div>
+			  	<div class="w3-rest w3-mobile">
+					<button class="w3-button w3-flat-belize-hole w3-border w3-border-white w3-hover-blue" style="display:inline;" onclick="monthVsCases();">Go</button>
+				</div>
+			</div>
+			 
+		</header>
+	</div>
+	<div class="w3-container">
+		<canvas id="monthVsCasesChart" class="w3-margin w3-center" height=120></canvas>
+	</div>
+
+	<!-- ///////////////////////// VicAge vs RelationShip////////////////////////////// -->
+
+	<div class="w3-center" style="margin:20px auto;">
+		<header class="w3-container w3-flat-belize-hole">
+			 <h2 class="fontSourceSansPro w3-text-white">Vic/Off Age vs RelationShip</h2>
+			 <div class="w3-row">
+			 	<div class="w3-col m2 s2 w3-mobile">
+			 		
+				 		<select class="fontSourceSansPro w3-select w3-center" style="background-color: #2980BB;color:white;width:50%;border:0px" name="type" id="graphTypeVicVsRel" >
+					    	<option value="bar">Bar</option>
+					    	<option value="line">Line</option>
+					    	<option value="radar">Radar</option>
+					  	</select>
+				  	
+				</div>
+			  	<div class="w3-col m1 s1 w3-mobile">
+				  		<input class="w3-check" type="checkbox" id="graphFillVicVsRel">
+						<label>Fill</label>
+			  	</div>
+			  	<div class="w3-col m3 s3 w3-mobile">
+				  		<p style="display:inline;">
+						  <input class="w3-radio" type="radio" name="vicVsRelRadio"  value="V" checked>
+						  <label>VicAge</label></p>
+						  <p style="display:inline;">
+						  <input class="w3-radio" type="radio" name="vicVsRelRadio"  value="O">
+						  <label>OffAge</label></p>
+			  	</div>
+			  	<div class="w3-col m3 s3 w3-mobile">
+			  		<div class="w3-col m5 s5">
+					  	<input class="w3-input" id="vicVsRelStart" type="number" min="0" max="99" value="0">
+					</div>
+					<div class="w3-col m1 s1">
+						<label>-</label>
+					</div>
+					<div class="w3-col m5 s5">
+				  		<input class="w3-input" id="vicVsRelEnd" type="number" min="0" max="99" value="99">
+				  	</div>
+			  	</div>
+			  	<div class="w3-rest w3-mobile">
+					<button class="w3-button w3-flat-belize-hole w3-border w3-border-white w3-hover-blue" style="display:inline;" onclick="test('vicVsRelAttrData','vicVsRel');">Go</button>
+				</div>
+			</div>
+			 
+		</header>
+	</div>
+	<div class="w3-container w3-row">
+		<div class="w3-col m2 s2" id="vicVsRelAttr">
+			
+		</div>
+		<div class="w3-rest">
+			<canvas id="vicVsRelChart" class="w3-margin w3-center" height=120></canvas>
+		</div>
+	</div>
+
+	<!-- ///////////////////////// Weapon vs RelationShip////////////////////////////// -->
+
+	<div class="w3-center" style="margin:20px auto;">
+		<header class="w3-container w3-flat-belize-hole">
+			 <h2 class="fontSourceSansPro w3-text-white">Weapon vs RelationShip</h2>
+			 <div class="w3-row">
+			 	<div class="w3-col m2 s2 w3-mobile">
+			 		
+				 		<select class="fontSourceSansPro w3-select w3-center" style="background-color: #2980BB;color:white;width:50%;border:0px" name="type" id="graphTypeWeaponVsRel" >
+					    	<option value="bar">Bar</option>
+					    	<option value="line">Line</option>
+					    	<option value="radar">Radar</option>
+					  	</select>
+				  	
+				</div>
+			  	<div class="w3-col m1 s1 w3-mobile">
+				  		<input class="w3-check" type="checkbox" id="graphFillWeaponVsRel">
+						<label>Fill</label>
+			  	</div>
+			  	<div class="w3-col m3 s3 w3-mobile">
+				  		<p style="display:inline;">
+						  <input class="w3-radio" type="radio" name="weaponVsRelRadio"  value="V" checked>
+						  <label>VicAge</label></p>
+						  <p style="display:inline;">
+						  <input class="w3-radio" type="radio" name="weaponVsRelRadio"  value="O">
+						  <label>OffAge</label></p>
+			  	</div>
+			  	<div class="w3-col m3 s3 w3-mobile">
+			  		<div class="w3-col m5 s5">
+					  	<input class="w3-input" id="weaponVsRelStart" type="number" min="0" max="99" value="0">
+					</div>
+					<div class="w3-col m1 s1">
+						<label>-</label>
+					</div>
+					<div class="w3-col m5 s5">
+				  		<input class="w3-input" id="weaponVsRelEnd" type="number" min="0" max="99" value="99">
+				  	</div>
+			  	</div>
+			  	<div class="w3-rest w3-mobile">
+					<button class="w3-button w3-flat-belize-hole w3-border w3-border-white w3-hover-blue" style="display:inline;" onclick="test('weaponVsRelAttrData','weaponVsRel');">Go</button>
+				</div>
+			</div>
+			 
+		</header>
+	</div>
+	<div class="w3-container w3-row">
+		<div class="w3-col m2 s2" id="weaponVsRelAttr">
+			
+		</div>
+		<div class="w3-rest">
+			<canvas id="weaponVsRelChart" class="w3-margin w3-center" height=120></canvas>
+		</div>
+	</div>
+
+
+</body>
+</html>
+<script>
+weaponvssex();
+yearVsCasesSolved();
+monthVsCases();
+var weaponVsSexData;
+var weaponVsSexChart;
+var yearVsCasesSolvedData;
+var yearVsCasesSolvedChart;
+var monthVsCasesData;
+var monthVsCasesChart;
+var vicVsRelData;
+var vicVsRelChart;
+var weaponVsRelData;
+var weaponVsRelChart;
+
+function hexToRgbA(hex){
+    var c;
+    if(/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)){
+        c= hex.substring(1).split('');
+        if(c.length== 3){
+            c= [c[0], c[0], c[1], c[1], c[2], c[2]];
+        }
+        c= '0x'+c.join('');
+        return 'rgba('+[(c>>16)&255, (c>>8)&255, c&255].join(',')+',0.6)';
+    }
+    throw new Error('Bad Hex');
+}
+
+function getRandomColor() {
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return hexToRgbA(color);
+}
+
+$.ajax({
+	type:'get',
+	url:'/getRelationshipAttr',
+	success:function(data){
+		data=JSON.parse(data);
+		var labels=Object.keys(data);
+		for(i in labels){
+			$('#vicVsRelAttr').append('<div style="font-size:10px;"><input class="w3-checkbox" type="checkbox" value="'+labels[i]+'"  style="height:10px;" name="vicVsRelAttrData"><label>'+labels[i]+'</label></div>');
+			$('#weaponVsRelAttr').append('<div style="font-size:10px;"><input class="w3-checkbox" type="checkbox" value="'+labels[i]+'"  style="height:10px;" name="weaponVsRelAttrData"><label>'+labels[i]+'</label></div>')
+		}
+	}
+});
+
+function test(AttrData,flag){
+	var RelAttrData=$('input[name="'+AttrData+'"]:checked');
+	var RelAttrDataSend=[];
+	for(var i =0 ;i<RelAttrData.length;++i){
+		RelAttrDataSend.push($(RelAttrData[i]).val());
+	}
+	if(flag=="vicVsRel")
+		vicVsRel(RelAttrDataSend);
+	if(flag=="weaponVsRel")
+		weaponVsRel(RelAttrDataSend);
+}
+
+function weaponvssex(){
+	if(weaponVsSexChart)
+		weaponVsSexChart.destroy();
+	var Options={
+		        scales: {
+		            yAxes: [{
+		                ticks: {
+		                    beginAtZero:true
+		                },
+		                scaleLabel: {
+		                	display:true,
+				            labelString: 'Percentage'
+				        },
+		            }],
+		            xAxes: [{
+				        stacked: false,
+				        scaleLabel: {
+				        	display:true,
+				            labelString: 'Weapon'
+				        },
+				        ticks: {
+				            stepSize: 1,
+				            min: 0,
+				            autoSkip: false
+				        }
+				    }]
+		        }
+		    };
+    var fill=$("#graphFillWeaponVsSex").prop('checked');
+	var ctx = document.getElementById("weaponVsSexChart");
+	$.ajax({
+		type:'get',
+		url:'weaponVsSex',
+		success:function(weapon){
+			weaponVsSexData=(JSON.parse(weapon));
+			console.log("");
+		},
+		complete:function(){
+			console.log("");
+			var labels=Object.keys(weaponVsSexData);
+			var Females={'label':"Female",'data':[],'backgroundColor':'rgba(255, 99, 132, 0.5)','borderColor':'rgba(255, 99, 132, 0.8)','fill':fill};
+			var Males={'label':"Males",'data':[],'backgroundColor':'rgba(54, 162, 235, 0.5)','borderColor':'rgba(54, 162, 235, 0.8)','fill':fill};
+			var Unknown={'label':"Unknown",'data':[],'backgroundColor':'rgba(255, 159, 64, 0.5)','borderColor':'rgba(255, 159, 64, 0.8)','fill':fill};
+			for(i in weaponVsSexData){
+				total=100/(weaponVsSexData[i].Female+weaponVsSexData[i].Male+weaponVsSexData[i].Unknown);
+				Females.data.push(weaponVsSexData[i].Female*total);
+				Males.data.push(weaponVsSexData[i].Male*total);
+				Unknown.data.push(weaponVsSexData[i].Unknown*total);
+			}
+			if($("#graphTypeWeaponVsSex").val()=="radar")
+				Options={};
+			weaponVsSexChart = new Chart(ctx, {
+			  type: $("#graphTypeWeaponVsSex").val(),
+			  data: {
+			    datasets: [Females, Males,Unknown],
+			    labels: labels, 
+			  },
+			  options:Options
+			});
+		}
+	});
+}
+
+function yearVsCasesSolved(){
+	if(yearVsCasesSolvedChart)
+		yearVsCasesSolvedChart.destroy();
+	var Options={
+		        scales: {
+		            yAxes: [{
+		                ticks: {
+		                    beginAtZero:true
+		                },
+		                scaleLabel: {
+		                	display:true,
+				            labelString: 'Percentage/Count'
+				        },
+		            }],
+		            xAxes: [{
+				        stacked: false,
+				        scaleLabel: {
+				        	display:true,
+				            labelString: 'Year'
+				        },
+				        ticks: {
+				            stepSize: 1,
+				            min: 0,
+				            autoSkip: false
+				        }
+				    }]
+		        }
+		    };
+    var fill=$("#graphFillYearVsCasesSolved").prop('checked');
+	var ctx = document.getElementById("yearVsCasesSolvedChart");
+	console.log($("input[name=yearVsCasesSolvedPercent]:checked").val());
+	$.ajax({
+		type:'get',
+		url:'yearVsCasesSolved',
+		data:{
+			'start':$("#yearVsCasesSolvedStart").val(),
+			'end':$("#yearVsCasesSolvedEnd").val()
+		},
+		success:function(solved){
+			yearVsCasesSolvedData=(JSON.parse(solved));
+			console.log(yearVsCasesSolvedData);
+		},
+		complete:function(){
+			console.log("");
+			var labels=Object.keys(yearVsCasesSolvedData);
+			if($("#graphTypeYearVsCasesSolved").val()=="radar")
+				Options={};
+			var Yes={'label':"Yes",'data':[],'backgroundColor':'rgba(255, 99, 132, 0.5)','borderColor':'rgba(255, 99, 132, 0.8)','fill':fill};
+			var No={'label':"No",'data':[],'backgroundColor':'rgba(54, 162, 235, 0.5)','borderColor':'rgba(54, 162, 235, 0.8)','fill':fill};
+			var Total={'label':"Total",'data':[],'backgroundColor':'rgba(255, 159, 64, 0.5)','borderColor':'rgba(255, 159, 64, 0.8)','fill':fill};
+			for(i in yearVsCasesSolvedData){
+				var total=1;
+				if($("input[name=yearVsCasesSolvedPercent]:checked").val()=="P"){
+					console.log("aaaaaaaa");
+					total=100/(yearVsCasesSolvedData[i].Yes+yearVsCasesSolvedData[i].No);
+				}
+				Yes.data.push(yearVsCasesSolvedData[i].Yes*total);
+				No.data.push(yearVsCasesSolvedData[i].No*total);
+				Total.data.push(yearVsCasesSolvedData[i].Yes*total+yearVsCasesSolvedData[i].No*total);
+			}
+			yearVsCasesSolvedChart = new Chart(ctx, {
+			  type: $("#graphTypeYearVsCasesSolved").val(),
+			  data: {
+			    datasets: [Yes,No,Total],
+			    labels: labels, 
+			  },
+			  options:Options
+			});
+		}
+	});
+}
+
+function monthVsCases(){
+	if(monthVsCasesChart)
+		monthVsCasesChart.destroy();
+	var Options={
+		        scales: {
+		            yAxes: [{
+		                ticks: {
+		                    beginAtZero:true
+		                },
+		                scaleLabel: {
+		                	display:true,
+				            labelString: 'Percentage/Count'
+				        },
+		            }],
+		            xAxes: [{
+				        stacked: false,
+				        scaleLabel: {
+				        	display:true,
+				            labelString: 'Month'
+				        },
+				        ticks: {
+				            stepSize: 1,
+				            min: 0,
+				            autoSkip: false
+				        }
+				    }]
+		        }
+		    };
+    var fill=$("#graphFillMonthVsCases").prop('checked');
+	var ctx = document.getElementById("monthVsCasesChart");
+	console.log($("input[name=monthVsCasesPercent]:checked").val());
+	$.ajax({
+		type:'get',
+		url:'monthVsCases',
+		data:{
+			'start':$("#monthVsCasesStart").val(),
+			'end':$("#monthVsCasesEnd").val()
+		},
+		success:function(solved){
+			monthVsCasesData=(JSON.parse(solved));
+			console.log(monthVsCasesData);
+		},
+		complete:function(){
+			console.log("");
+			var labels=Object.keys(monthVsCasesData);
+			if($("#graphTypeMonthVsCases").val()=="radar")
+				Options={};
+			var Yes={'label':"Yes",'data':[],'backgroundColor':'rgba(255, 99, 132, 0.5)','borderColor':'rgba(255, 99, 132, 0.8)','fill':fill};
+			var No={'label':"No",'data':[],'backgroundColor':'rgba(54, 162, 235, 0.5)','borderColor':'rgba(54, 162, 235, 0.8)','fill':fill};
+			var Total={'label':"Total",'data':[],'backgroundColor':'rgba(255, 159, 64, 0.5)','borderColor':'rgba(255, 159, 64, 0.8)','fill':fill};
+			var total=1;
+			if($("input[name=monthVsCasesPercent]:checked").val()=="P"){
+				for(i in monthVsCasesData)
+					total+=monthVsCasesData[i].Yes+monthVsCasesData[i].No;
+				total-=1;
+				total=100/total;
+			}
+			for(i in monthVsCasesData){
+				Yes.data.push(monthVsCasesData[i].Yes*total);
+				No.data.push(monthVsCasesData[i].No*total);
+				Total.data.push(monthVsCasesData[i].Yes*total+monthVsCasesData[i].No*total);
+			}
+			monthVsCasesChart = new Chart(ctx, {
+			  type: $("#graphTypeMonthVsCases").val(),
+			  data: {
+			    datasets: [Yes,No,Total],
+			    labels: labels, 
+			  },
+			  options:Options
+			});
+		}
+	});
+}
+
+function vicVsRel(vicVsRelAttrDataSend){
+	if(vicVsRelChart)
+		vicVsRelChart.destroy();
+	var Options={
+		        scales: {
+		            yAxes: [{
+		                ticks: {
+		                    beginAtZero:true
+		                },
+		                scaleLabel: {
+		                	display:true,
+				            labelString: 'Count'
+				        },
+		            }],
+		            xAxes: [{
+				        scaleLabel: {
+				        	display:true,
+				            labelString: 'Victim/Offender Age'
+				        }
+				    }]
+		        }
+		    };
+    var fill=$("#graphFillVicVsRel").prop('checked');
+	var ctx = document.getElementById("vicVsRelChart");
+	console.log($("input[name=vicVsRelPercent]:checked").val());
+	$.ajax({
+		type:'get',
+		url:'victimVsRelation',
+		data:{
+			'attr':vicVsRelAttrDataSend,
+			'start':$("#vicVsRelStart").val(),
+			'end':$("#vicVsRelEnd").val(),
+			'type':$("input[name=vicVsRelRadio]:checked").val()
+		},
+		success:function(solved){
+			vicVsRelData=(JSON.parse(solved));
+			console.log(vicVsRelData);
+		},
+		complete:function(){
+			var labels=[];
+			for(var i=$("#vicVsRelStart").val();i<=$("#vicVsRelEnd").val();++i){
+				labels.push(i);
+			}
+			var datasets=[];
+			for(i in vicVsRelData){
+				var color=getRandomColor();
+				var tempObj={label:i,data:[],fill:fill,backgroundColor:color,borderColor:color};
+				for(var j=$("#vicVsRelStart").val();j<=$("#vicVsRelEnd").val();++j){
+					if(vicVsRelData[i][j]){
+						tempObj.data.push(vicVsRelData[i][j]);
+					}
+					else{
+						tempObj.data.push(0);
+					}
+				}
+				datasets.push(tempObj);
+			}
+			if($("#graphTypeVicVsRel").val()=="radar")
+		 		Options={};
+				vicVsRelChart = new Chart(ctx, {
+					type: $("#graphTypeVicVsRel").val(),
+					data: {
+					datasets: datasets,
+					labels: labels, 
+					},
+					options:Options
+			});
+
+		}
+	});
+}
+
+function weaponVsRel(weaponVsRelAttrDataSend){
+	if(weaponVsRelChart)
+		weaponVsRelChart.destroy();
+	var Options={
+		        scales: {
+		            yAxes: [{
+		                ticks: {
+		                    beginAtZero:true
+		                },
+		                scaleLabel: {
+		                	display:true,
+				            labelString: 'Count'
+				        },
+		            }],
+		            xAxes: [{
+				        scaleLabel: {
+				        	display:true,
+				            labelString: 'Weapon'
+				        },
+				        ticks: {
+				            stepSize: 1,
+				            min: 0,
+				            autoSkip: false
+				        }
+				    }]
+		        }
+		    };
+    var fill=$("#graphFillWeaponVsRel").prop('checked');
+	var ctx = document.getElementById("weaponVsRelChart");
+	console.log($("input[name=weaponVsRelPercent]:checked").val());
+	$.ajax({
+		type:'get',
+		url:'weaponVsRelation',
+		data:{
+			'attr':weaponVsRelAttrDataSend,
+			'start':$("#weaponVsRelStart").val(),
+			'end':$("#weaponVsRelEnd").val(),
+			'type':$("input[name=weaponVsRelRadio]:checked").val()
+		},
+		success:function(solved){
+			weaponVsRelData=(JSON.parse(solved));
+			console.log(weaponVsRelData);
+		},
+		complete:function(){
+			var labels;
+			$.ajax({
+				type:'get',
+				url:'getWeaponAttr',
+				success:function(data){
+					labels=Object.keys(JSON.parse(data));
+					//console.log(labels);
+				},
+				complete:function(){
+					var datasets=[];
+					for(i in weaponVsRelData){
+						var color=getRandomColor();
+						var tempObj={label:i,data:[],fill:fill,backgroundColor:color,borderColor:color};
+						for(j in labels){
+							console.log(j);
+							if(weaponVsRelData[i][labels[j]]){
+								tempObj.data.push(weaponVsRelData[i][labels[j]]);
+							}
+							else{
+								tempObj.data.push(0);
+							}
+						}
+						datasets.push(tempObj);
+						//console.log(tempObj);
+					}
+					if($("#graphTypeWeaponVsRel").val()=="radar")
+				 		Options={};
+						weaponVsRelChart = new Chart(ctx, {
+							type: $("#graphTypeWeaponVsRel").val(),
+							data: {
+							datasets: datasets,
+							labels: labels, 
+							},
+							options:Options
+					});
+				}
+			});
+		}
+		// complete:function(){
+		// 	var labels=[];
+		// 	for(var i=$("#weaponVsRelStart").val();i<=$("#weaponVsRelEnd").val();++i){
+		// 		labels.push(i);
+		// 	}
+		// 	var datasets=[];
+		// 	for(i in weaponVsRelData){
+		// 		var color=getRandomColor();
+		// 		var tempObj={label:i,data:[],fill:fill,backgroundColor:color,borderColor:color};
+		// 		for(var j=$("#weaponVsRelStart").val();j<=$("#weaponVsRelEnd").val();++j){
+		// 			if(weaponVsRelData[i][j]){
+		// 				tempObj.data.push(weaponVsRelData[i][j]);
+		// 			}
+		// 			else{
+		// 				tempObj.data.push(0);
+		// 			}
+		// 		}
+		// 		datasets.push(tempObj);
+		// 	}
+		// 	if($("#graphTypeWeaponVsRel").val()=="radar")
+		//  		Options={};
+		// 		weaponVsRelChart = new Chart(ctx, {
+		// 			type: $("#graphTypeWeaponVsRel").val(),
+		// 			data: {
+		// 			datasets: datasets,
+		// 			labels: labels, 
+		// 			},
+		// 			options:Options
+		// 	});
+
+		// }
+	});
+}
+
+</script>
